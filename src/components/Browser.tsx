@@ -8,9 +8,11 @@ export const Browser = () => {
   return (
     <div>
       <h1>Personajes de la API</h1>
+      {loading ? <p>Loading...</p> : null}
+      {error ? <p>Error: {error}</p> : null}
       <ul>
-        {characters.map((elemento) => (
-          <li key={elemento.id}>{elemento.name}</li>
+        {characters.map((element) => (
+          <li key={element.id}>{element.name}</li>
         ))}
       </ul>
     </div>

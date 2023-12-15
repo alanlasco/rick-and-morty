@@ -6,7 +6,7 @@ export const useGetCharacters = (url: string) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [info, setInfo] = useState<Info>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   const loadApi = async () => {
     try {
