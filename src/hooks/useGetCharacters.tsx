@@ -14,6 +14,7 @@ export const useGetCharacters = (url: string) => {
       const response = await axios.get(url);
       setCharacters(response.data.results);
       setInfo(response.data.info);
+      console.log(response.data.info);
     } catch (error) {
       console.error("Error fetching Data: ", error);
     } finally {
@@ -23,6 +24,9 @@ export const useGetCharacters = (url: string) => {
   useEffect(() => {
     loadApi();
   }, []);
+  const reload = () => {
+    loadApi();
+  };
 
-  return { characters, info, loading, error };
+  return { characters, info, loading, error, reload };
 };
