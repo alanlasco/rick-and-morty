@@ -1,6 +1,6 @@
 export interface CharacterProps {
   name: string;
   status: string;
-  species: String;
+  species: string;
   image: string;
 }
