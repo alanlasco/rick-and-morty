@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Character } from "../interfaces/InCharacter";
 import { Info } from "../interfaces/InInfo";
-import axios from "axios";
+
 export const useGetCharacters = (url: string) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [info, setInfo] = useState<Info>();
@@ -11,10 +11,14 @@ export const useGetCharacters = (url: string) => {
   const loadApi = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(url);
-      setCharacters(response.data.results);
-      setInfo(response.data.info);
-      console.log(response.data.info);
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setCharacters(data.results);
+      setInfo(data.info);
+      console.log(data.info);
     } catch (error) {
       console.error("Error fetching Data: ", error);
     } finally {
