@@ -11,13 +11,11 @@ export const Browser = () => {
 
   const onPrevious = () => {
     if (info && info.prev) {
-      console.log("se hizo click");
       setApiUrl(info.prev);
     }
   };
 
   const onNext = () => {
-    console.log("se hizo click");
     if (info && info.next) {
       console.log(info.prev);
       setApiUrl(info.next);

@@ -3,7 +3,7 @@ import { PaginationProps } from "../interfaces/InPaginationProps";
 
 export const Pagination = (props: PaginationProps) => {
   return (
-    <div className="flex container">
+    <div data-testid="pagination-component" className="flex container">
       {props.previous ? (
         <button
           onClick={() => props.onPrevious()}
