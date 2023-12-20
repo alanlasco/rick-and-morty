@@ -1,8 +1,8 @@
 import React from "react";
-import { CharacterProps } from "../interfaces/InCharacterProps";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { GrStatusInfo } from "react-icons/gr";
 import { FaUserAstronaut } from "react-icons/fa";
+import { CharacterProps } from "../interfaces/characterProps";
 export const Character = (props: CharacterProps) => {
   return (
     <div className="relative flex w-75 flex-col rounded-xl bg-gray-600 bg-clip-border text-gray-700 shadow-md">
