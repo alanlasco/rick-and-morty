@@ -10,20 +10,28 @@ export const Character = (props: CharacterProps) => {
         <img className="h-full w-full" src={props.image} alt="" />
       </div>
       <div className="p-3 divide-y-2 divide-emerald-700 ">
-        <p className="text-emerald-400 items-center mb-2 flex font-sans text-xl font-semibold leading-relaxed text-inherit antialiase">
-          {props.name}
-          <MdDriveFileRenameOutline />
-        </p>
-        <p className="text-emerald-500 items-center p-2 flex font-sans text-lg font-semibold leading-relaxed text-inherit antialiased">
-          <GrStatusInfo />
-          {" Status: "}
-          {props.status}
-        </p>
-        <p className="text-emerald-500 items-center p-2 flex font-sans text-lg font-semibold leading-relaxed text-inherit antialiased">
-          <FaUserAstronaut />
-          {" Species: "}
-          {props.species}
-        </p>
+        <div className=" items-center mb-2 flex font-sans text-xl font-semibold leading-relaxed text-inherit antialiase">
+          <p className="text-emerald-400">{props.name}</p>
+          <span className="text-emerald-400">
+            <MdDriveFileRenameOutline />
+          </span>
+        </div>
+        <div className=" items-center p-2 flex font-sans text-lg font-semibold leading-relaxed text-inherit antialiased">
+          <span className="text-emerald-500 ">
+            <GrStatusInfo />
+          </span>
+          <p className="text-emerald-500 ">
+            {" Status: "} {props.status}
+          </p>
+        </div>
+        <div className="text-emerald-500 items-center p-2 flex font-sans text-lg font-semibold leading-relaxed text-inherit antialiased">
+          <span className="text-emerald-500">
+            <FaUserAstronaut />
+          </span>
+          <p className="text-emerald-500">
+            {" Species: "} {props.species}
+          </p>
+        </div>
       </div>
       <div className="mt-3 p-6 pt-0">
         <button

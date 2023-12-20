@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetCharacters } from "../hooks/useGetCharacters";
-import { Pagination } from "./Pagination";
-import { Character } from "./Character";
+import { Pagination } from "../components/Pagination";
+import { Character } from "../components/Character";
 
 export const Browser = () => {
   const [apiurl, setApiUrl] = useState<string>(
