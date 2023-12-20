@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Character } from "../interfaces/InCharacter";
-import { Info } from "../interfaces/InInfo";
-import axios from 'axios';
+
+import axios from "axios";
+import { info } from "../interfaces/InInfo";
+import { character } from "../interfaces/InCharacter";
 
 export const useGetCharacters = (url: string) => {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [info, setInfo] = useState<Info>();
+  const [characters, setCharacters] = useState<character[]>([]);
+  const [info, setInfo] = useState<info>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
- const loadApi = async () => {
+  const loadApi = async () => {
     try {
       setLoading(true);
       const response = await axios.get(url);

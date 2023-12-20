@@ -1,4 +1,4 @@
-export interface Info {
+export interface info {
   count: number;
   pages: number;
   next: string;
