@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import axios from "axios";
-import { info } from "../interfaces/InInfo";
-import { character } from "../interfaces/InCharacter";
+import { info } from "../interfaces/inInfo";
+import { character } from "../interfaces/inCharacter";
 
 export const useGetCharacters = (url: string) => {
   const [characters, setCharacters] = useState<character[]>([]);
   const [info, setInfo] = useState<info>();
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   const loadApi = async () => {
     try {
@@ -18,7 +17,13 @@ export const useGetCharacters = (url: string) => {
       setInfo(response.data.info);
       console.log(response.data.info);
     } catch (error) {
-      console.error("Error fetching Data: ", error);
+      if (error instanceof Error) {
+        console.error("Error fetching Data: ", error.message);
+      } else if (axios.isAxiosError(error)) {
+        console.error("Axios error: ", error.message);
+      } else {
+        console.error("Unexpected error: ", error);
+      }
     } finally {
       setLoading(false);
     }
@@ -30,5 +35,5 @@ export const useGetCharacters = (url: string) => {
     loadApi();
   };
 
-  return { characters, info, loading, error, reload };
+  return { characters, info, loading, reload };
 };
