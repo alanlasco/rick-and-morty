@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useGetCharacters } from "../hooks/useGetCharacters";
 import { Pagination } from "../components/Pagination";
 import { Character } from "../components/Character";
+import { Navbar } from "../components/Navbar";
+import { ListOfCharacters } from "../components/ListOfCharacters";
+import { character } from "../interfaces/inCharacter";
 
 export const Browser = () => {
   const [apiurl, setApiUrl] = useState<string>(
     "https://rickandmortyapi.com/api/character"
   );
   const { characters, info, loading, reload } = useGetCharacters(apiurl);
-
+  const [searchResults, setSearchResults] = useState<character[]>([]);
   const onPrevious = () => {
     if (info && info.prev) {
       setApiUrl(info.prev);
@@ -25,30 +28,41 @@ export const Browser = () => {
     reload();
   }, [apiurl]);
 
+  const handleSearch = (results: character[]) => {
+    setSearchResults(results);
+  };
+
   return (
-    <div className="bg-zinc-900 w-full grid h-full place-items-center">
-      <h1>Personajes de la API</h1>
-      {loading ? <p data-test-id="loading">Loading...</p> : null}
-      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-2">
-        {characters.map((element) => (
-          <li data-test-id="show-data" className="mx-2 my-5" key={element.id}>
-            <Character
-              name={element.name}
-              status={element.status}
-              species={element.species}
-              image={element.image}
-            />
-          </li>
-        ))}
-      </ul>
-      <div className="place-items-center my-5">
-        <Pagination
-          previous={info?.prev}
-          next={info?.next}
-          onPrevious={onPrevious}
-          onNext={onNext}
+    <>
+      <Navbar onSearch={handleSearch} />
+      <div className="bg-zinc-900 w-full grid h-full place-items-center">
+        <h1>Personajes de la API</h1>
+        {loading ? <p data-test-id="loading">Loading...</p> : null}
+        <ListOfCharacters
+          charactersToMap={
+            searchResults.length > 0 ? searchResults : characters
+          }
         />
+        {searchResults.length > 0 ? (
+          <div data-test-id="pagination" className="place-items-center my-5">
+            <Pagination
+              previous={""}
+              next={""}
+              onPrevious={onPrevious}
+              onNext={onNext}
+            />
+          </div>
+        ) : (
+          <div data-test-id="pagination" className="place-items-center my-5">
+            <Pagination
+              previous={info?.prev}
+              next={info?.next}
+              onPrevious={onPrevious}
+              onNext={onNext}
+            />
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
