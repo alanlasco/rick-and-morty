@@ -9,17 +9,24 @@ export const SearchComponent = ({
   onSearch: (results: character[]) => void;
 }) => {
   const [search, setSearch] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const searcher = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
-    console.log(e.target);
+    setErrorMessage(null);
   };
   const { results } = useFilterByCharacter(search);
 
-  const handleSearh = () => {
+  const handleSearch = () => {
+    if (!search.trim()) {
+      setErrorMessage("Campo vacío. Ingrese el nombre.");
+      return;
+    }
+
     const chars = results;
     onSearch(chars);
   };
+
   return (
     <>
       <div className="flex items-center justify-center">
@@ -44,7 +51,7 @@ export const SearchComponent = ({
           </datalist>
 
           <button
-            onClick={handleSearh}
+            onClick={handleSearch}
             type="button"
             value="Search"
             className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-br-lg"
@@ -53,6 +60,11 @@ export const SearchComponent = ({
           </button>
         </div>
       </div>
+      {errorMessage && (
+        <div className="flex items-center justify-center h-full mt-2">
+          <p className="text-center text-red-500">{errorMessage}</p>
+        </div>
+      )}
     </>
   );
 };

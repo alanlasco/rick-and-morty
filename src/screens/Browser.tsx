@@ -12,24 +12,35 @@ export const Browser = () => {
   );
   const { characters, info, loading, reload } = useGetCharacters(apiurl);
   const [searchResults, setSearchResults] = useState<character[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const onPrevious = () => {
     if (info && info.prev) {
       setApiUrl(info.prev);
+      setErrorMessage(null); // Limpiar el mensaje de error al cambiar de página
     }
   };
 
   const onNext = () => {
     if (info && info.next) {
-      console.log(info.prev);
       setApiUrl(info.next);
+      setErrorMessage(null); // Limpiar el mensaje de error al cambiar de página
     }
   };
+
   useEffect(() => {
     reload();
+    setErrorMessage(null); // Limpiar el mensaje de error al cargar nuevos personajes
   }, [apiurl]);
 
   const handleSearch = (results: character[]) => {
     setSearchResults(results);
+
+    if (results.length === 0) {
+      setErrorMessage("No se encontraron personajes.");
+    } else {
+      setErrorMessage(null); // Limpiar el mensaje de error si se encontraron resultados
+    }
   };
 
   return (
@@ -38,11 +49,15 @@ export const Browser = () => {
       <div className="bg-zinc-900 w-full grid h-full place-items-center">
         <h1>Personajes de la API</h1>
         {loading ? <p data-test-id="loading">Loading...</p> : null}
-        <ListOfCharacters
-          charactersToMap={
-            searchResults.length > 0 ? searchResults : characters
-          }
-        />
+        {errorMessage ? (
+          <p>{errorMessage}</p>
+        ) : (
+          <ListOfCharacters
+            charactersToMap={
+              searchResults.length > 0 ? searchResults : characters
+            }
+          />
+        )}
         {searchResults.length > 0 ? (
           <div data-test-id="pagination" className="place-items-center my-5">
             <Pagination
