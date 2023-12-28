@@ -11,6 +11,8 @@ jest.mock("../hooks/useGetCharacters", () => ({
         status: "Alive",
         species: "Human",
         image: "image1.jpg",
+        type: "",
+        gender: "Male",
       },
       {
         id: 2,
@@ -18,6 +20,8 @@ jest.mock("../hooks/useGetCharacters", () => ({
         status: "Dead",
         species: "Alien",
         image: "image2.jpg",
+        type: "Dead alien",
+        gender: "Male",
       },
     ],
     info: {
@@ -31,13 +35,10 @@ jest.mock("../hooks/useGetCharacters", () => ({
 
 describe("Browser Component", () => {
   test("renders characters and pagination", () => {
-    // Renderiza el componente
     render(<Browser />);
 
-    // Verifica que los personajes se rendericen correctamente
     expect(screen.getByTestId("show-data")).toBeInTheDocument();
 
-    // Verifica que la paginación se renderice correctamente
     expect(screen.getByTestId("pagination")).toBeInTheDocument();
   });
 });
