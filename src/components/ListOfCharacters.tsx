@@ -18,6 +18,8 @@ export const ListOfCharacters = ({
                 status={element.status}
                 species={element.species}
                 image={element.image}
+                type={element.type}
+                gender={element.gender}
               />
             </li>
           ))}
@@ -31,6 +33,8 @@ export const ListOfCharacters = ({
                 status={element.status}
                 species={element.species}
                 image={element.image}
+                type={element.type}
+                gender={element.gender}
               />
             </li>
           ))}
