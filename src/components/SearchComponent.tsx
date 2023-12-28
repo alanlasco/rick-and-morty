@@ -31,7 +31,7 @@ export const SearchComponent = ({
     <>
       <div className="flex items-center justify-center">
         <div className="flex">
-          <div className="flex w-10 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-gray-200 bg-white p-5">
+          <div className="flex w-10 h-1 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-gray-200 bg-white p-5">
             <span className="text-black">
               <IoSearchOutline className="w-5 h-5" />
             </span>

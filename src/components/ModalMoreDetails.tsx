@@ -23,7 +23,11 @@ export const ModalMoreDetails = ({
     <div className="flex items-center justify-center">
       <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-gray-600 bg-clip-border text-emerald-600 shadow-md">
         <div className="relative m-0 w-2/5 shrink-0 overflow-hidden rounded-xl rounded-r-none bg-gray-600 bg-clip-border text-emerald-700">
-          <img src={image} alt="image" className="h-full w-full object-cover" />
+          <img
+            src={image}
+            alt="image"
+            className="h-full w-full max-sm:object-contain object-cover bg-emerald-600 pr-1"
+          />
         </div>
         <div className="p-3 divide-y-2 divide-emerald-700 ">
           <div className=" items-center mb-2 flex font-sans text-3xl font-semibold leading-relaxed text-inherit antialiase">
