@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Home } from "./screens/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Browser } from "./screens/Browser";

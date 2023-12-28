@@ -1,4 +1,3 @@
-import React from "react";
 import { character } from "../interfaces/inCharacter";
 import { Character } from "./Character";
 

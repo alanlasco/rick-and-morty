@@ -18,7 +18,7 @@ export const Browser = () => {
   const onPrevious = () => {
     if (info && info.prev) {
       setApiUrl(info.prev);
-      setErrorMessage(null); // Limpiar el mensaje de error al cambiar de página
+      setErrorMessage(null);
     }
   };
 
@@ -26,22 +26,21 @@ export const Browser = () => {
     if (info && info.next) {
       setApiUrl(info.next);
       setErrorMessage(null);
-      console.log(info.next); // Limpiar el mensaje de error al cambiar de página
     }
   };
 
   useEffect(() => {
     reload();
-    setErrorMessage(null); // Limpiar el mensaje de error al cargar nuevos personajes
+    setErrorMessage(null);
   }, [apiurl]);
 
   const handleSearch = (results: character[]) => {
     setSearchResults(results);
 
     if (results.length === 0) {
-      setErrorMessage("No se encontraron personajes.");
+      setErrorMessage("Sorry, no results found for the entered name.");
     } else {
-      setErrorMessage(null); // Limpiar el mensaje de error si se encontraron resultados
+      setErrorMessage(null);
     }
     setNeedReload(true);
   };
@@ -61,7 +60,18 @@ export const Browser = () => {
     <>
       <Navbar onSearch={handleSearch} />
       <div className=" bg-zinc-900 w-full grid place-items-center min-h-screen pt-4">
-        {loading ? <p data-test-id="loading">Loading...</p> : null}
+        {loading ? (
+          <div>
+            <div className="flex flex-row gap-2">
+              <div className="w-4 h-4 rounded-full bg-emerald-700 animate-bounce [animation-delay:.7s]"></div>
+              <div className="w-4 h-4 rounded-full bg-emerald-700 animate-bounce [animation-delay:.3s]"></div>
+              <div className="w-4 h-4 rounded-full bg-emerald-700 animate-bounce [animation-delay:.7s]"></div>
+            </div>
+            <p className="text-gray-700 mt-1" data-test-id="loading">
+              Loading...
+            </p>{" "}
+          </div>
+        ) : null}
         <div className={isHidden()}>
           <ListOfCharacters charactersToMap={characters} />
         </div>
@@ -72,7 +82,7 @@ export const Browser = () => {
               src={require(`../images/notFoundIcon.png`)}
               alt=""
             />
-            <p className="text-red-600 p-">{errorMessage}</p>
+            <p className="text-red-600 p-3">{errorMessage}</p>
           </div>
         ) : searchResults.length > 0 ? (
           <div className=" bg-zinc-900 w-full h-full">

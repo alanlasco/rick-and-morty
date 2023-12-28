@@ -1,4 +1,3 @@
-import React, { useState, ChangeEvent } from "react";
 import { useGetCharacters } from "./useGetCharacters";
 
 export const useFilterByCharacter = (name: string) => {

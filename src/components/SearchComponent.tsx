@@ -19,7 +19,7 @@ export const SearchComponent = ({
 
   const handleSearch = () => {
     if (!search.trim()) {
-      setErrorMessage("Campo vacío. Ingrese el nombre.");
+      setErrorMessage("Please enter a name.");
       return;
     }
 
