@@ -15,7 +15,6 @@ export const useGetCharacters = (url: string) => {
       const response = await axios.get(url);
       setCharacters(response.data.results);
       setInfo(response.data.info);
-      console.log(response.data.info);
     } catch (error) {
       if (error instanceof Error) {
         console.error("Error fetching Data: ", error.message);
