@@ -2,8 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{js,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      blur: {
+        xs: "2px",
+      },
+    },
   },
   plugins: [],
-}
-
+};

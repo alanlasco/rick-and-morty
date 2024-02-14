@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Home } from "../components/Home";
+import { Home } from "../screens/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 test("Home renders successfully", () => {
