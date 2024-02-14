@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { SearchComponent } from "./SearchComponent";
 import { character } from "../interfaces/inCharacter";
+import { Team } from "./Team";
 
 export const Navbar = ({
   onSearch,
@@ -10,9 +11,14 @@ export const Navbar = ({
   onSearch: (results: character[]) => void;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isTeamMenuOpen, setIsTeamMenuOpen] = useState<boolean>(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleTeamMenu = () => {
+    setIsTeamMenuOpen(!isTeamMenuOpen);
   };
 
   return (
@@ -50,6 +56,15 @@ export const Navbar = ({
           <div className="text-sm lg:flex-grow mt-2 mb-2">
             <SearchComponent onSearch={onSearch} />
           </div>
+          <button
+            onClick={toggleTeamMenu}
+            className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full mx-auto"
+          >
+            <div className="items-center">
+              Team
+              <FaHome className="ml-2" />
+            </div>
+          </button>
           <button className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full mx-auto">
             <div className="items-center">
               <Link to="/" className="flex items-center">
@@ -60,6 +75,7 @@ export const Navbar = ({
           </button>
         </div>
       </nav>
+      <div>{isTeamMenuOpen && <Team />}</div>
     </>
   );
 };
