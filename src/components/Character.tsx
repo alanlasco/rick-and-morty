@@ -2,8 +2,11 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { GrStatusInfo } from "react-icons/gr";
 import { FaUserAstronaut } from "react-icons/fa";
 import { ModalMoreDetails } from "./ModalMoreDetails";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TeamContext } from "../context/TeamContext";
+import { Member } from "../interfaces/inMember";
 export interface characterProps {
+  id: number;
   name: string;
   status: string;
   species: string;
@@ -13,6 +16,7 @@ export interface characterProps {
 }
 
 export const Character = ({
+  id,
   name,
   status,
   species,
@@ -21,6 +25,14 @@ export const Character = ({
   gender,
 }: characterProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { addMember } = useContext(TeamContext);
+  const newMember: Member = {
+    id: id,
+    img: image,
+    name: name,
+  };
+
   return (
     <div className="relative flex w-75 flex-col rounded-xl bg-gray-600 bg-clip-border text-gray-700 shadow-md">
       <div className="relative mx-4 -mt-6 h-41 overflow-hidden rounded-xl bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-green-500 to-green-600">
@@ -58,6 +70,16 @@ export const Character = ({
           className="select-none rounded-lg bg-green-400 hover:bg-green-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gren-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         >
           More details
+        </button>
+      </div>
+      <div className="mt-3 p-6 pt-0">
+        <button
+          onClick={() => addMember(newMember)}
+          data-ripple-light="true"
+          type="button"
+          className="select-none rounded-lg bg-green-400 hover:bg-green-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gren-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        >
+          Add{" "}
         </button>
       </div>
       {isOpen && (
