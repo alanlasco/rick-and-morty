@@ -16,7 +16,7 @@ export const Team = () => {
           {
             <ul>
               {members.map((member) => (
-                <li key={member.id}>{member.name}</li>
+                <li key={member.idem}>{member.name}</li>
               ))}
             </ul>
           }

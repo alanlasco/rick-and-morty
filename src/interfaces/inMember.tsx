@@ -1,5 +1,5 @@
 export interface Member {
-  id: number;
+  idem: number;
   img: string;
   name: string;
 }

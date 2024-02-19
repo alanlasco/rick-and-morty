@@ -13,6 +13,7 @@ export const ListOfCharacters = ({
           {charactersToMap.map((element) => (
             <li className="mx-2 my-5" key={element.id}>
               <Character
+                id={element.id}
                 name={element.name}
                 status={element.status}
                 species={element.species}
@@ -28,6 +29,7 @@ export const ListOfCharacters = ({
           {charactersToMap.map((element) => (
             <li className="mx-2 my-5" key={element.id}>
               <Character
+                id={element.id}
                 name={element.name}
                 status={element.status}
                 species={element.species}

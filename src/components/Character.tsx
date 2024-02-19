@@ -5,6 +5,7 @@ import { ModalMoreDetails } from "./ModalMoreDetails";
 import { useContext, useState } from "react";
 import { TeamContext } from "../context/TeamContext";
 import { Member } from "../interfaces/inMember";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 export interface characterProps {
   id: number;
   name: string;
@@ -26,11 +27,27 @@ export const Character = ({
 }: characterProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { addMember } = useContext(TeamContext);
+  const { teamState, addMember, disableBtn, isDisabled } =
+    useContext(TeamContext);
   const newMember: Member = {
-    id: id,
+    idem: id,
     img: image,
     name: name,
+  };
+  const [btnIsDisabled, setBtnIsDisabled] = useState<boolean>(isDisabled());
+  const handleClick = () => {
+    addMember(newMember);
+    setBtnIsDisabled(true);
+    disableBtn();
+  };
+  const handleDisabled = () => {
+    if (btnIsDisabled === true && isDisabled() === false) {
+      setBtnIsDisabled(false);
+      return isDisabled();
+    } else {
+      console.log(isDisabled());
+      return btnIsDisabled;
+    }
   };
 
   return (
@@ -74,10 +91,11 @@ export const Character = ({
       </div>
       <div className="mt-3 p-6 pt-0">
         <button
-          onClick={() => addMember(newMember)}
+          onClick={() => handleClick()}
           data-ripple-light="true"
           type="button"
           className="select-none rounded-lg bg-green-400 hover:bg-green-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gren-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          disabled={handleDisabled()}
         >
           Add{" "}
         </button>
