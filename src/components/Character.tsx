@@ -27,7 +27,7 @@ export const Character = ({
 }: characterProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { teamState, addMember, disableBtn, isDisabled } =
+  const { teamState, addMember, disableBtn, isDisabled, disableAll } =
     useContext(TeamContext);
   const newMember: Member = {
     idem: id,
@@ -41,11 +41,13 @@ export const Character = ({
     disableBtn();
   };
   const handleDisabled = () => {
+    if (teamState.teamCount === 5) {
+      return isDisabled();
+    }
     if (btnIsDisabled === true && isDisabled() === false) {
       setBtnIsDisabled(false);
       return isDisabled();
     } else {
-      console.log(isDisabled());
       return btnIsDisabled;
     }
   };

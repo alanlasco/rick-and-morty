@@ -24,18 +24,21 @@ export const TeamProvider = ({ children }: props) => {
   const [teamState, setTeamState] = useState<teamState>(INITIAL_STATE);
   const [member, setMember] = useState<Member>(INITIAL_MEMBER);
   const [btn, setBtn] = useState<boolean>(false);
-  const addMember = (newMember: Member) => {
-    teamState.teamCount <= 5
-      ? setTeamState((prevTeam) => {
-          // Copiar el estado actual
-          const updatedTeamState: teamState = { ...prevTeam };
 
-          // Actualizar el array de members
-          updatedTeamState.members = [...prevTeam.members, newMember];
-          teamState.teamCount += 1;
-          return updatedTeamState;
-        })
-      : (teamState.isFull = true);
+  const addMember = (newMember: Member) => {
+    setTeamState((prevTeam) => {
+      if (prevTeam.teamCount < 5) {
+        return {
+          ...prevTeam,
+          members: [...prevTeam.members, newMember],
+          teamCount: prevTeam.teamCount + 1,
+          isFull: prevTeam.teamCount + 1 === 5,
+        };
+      } else {
+        setBtn(true); // Deshabilita el botón cuando el equipo está lleno
+        return prevTeam; // Retorna el estado sin cambios
+      }
+    });
   };
 
   const reset = () => {
@@ -51,10 +54,19 @@ export const TeamProvider = ({ children }: props) => {
   const disableBtn = () => {
     setBtn(true);
   };
-
+  const disableAll = () => {
+    setBtn(false);
+  };
   return (
     <TeamContext.Provider
-      value={{ teamState, addMember, reset, isDisabled, disableBtn }}
+      value={{
+        teamState,
+        addMember,
+        reset,
+        isDisabled,
+        disableBtn,
+        disableAll,
+      }}
     >
       {/* Renderizar otros componentes si es necesario */}
       {children}
