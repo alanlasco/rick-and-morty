@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { SearchComponent } from "./SearchComponent";
 import { character } from "../interfaces/inCharacter";
+import { RiTeamLine } from "react-icons/ri";
 import { Team } from "./Team";
 
 export const Navbar = ({
@@ -58,11 +59,11 @@ export const Navbar = ({
           </div>
           <button
             onClick={toggleTeamMenu}
-            className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full mx-auto"
+            className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full mx-auto ml-2"
           >
-            <div className="items-center">
+            <div className="flex items-center ml-2">
               Team
-              <FaHome className="ml-2" />
+              <RiTeamLine className="ml-2" />
             </div>
           </button>
           <button className="bg-green-400 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full mx-auto">

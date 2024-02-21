@@ -5,7 +5,6 @@ import { ModalMoreDetails } from "./ModalMoreDetails";
 import { useContext, useState } from "react";
 import { TeamContext } from "../context/TeamContext";
 import { Member } from "../interfaces/inMember";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 export interface characterProps {
   id: number;
   name: string;
@@ -41,7 +40,7 @@ export const Character = ({
     disableBtn();
   };
   const handleDisabled = () => {
-    if (teamState.teamCount === 5) {
+    if (teamState.teamCount === 4) {
       return isDisabled();
     }
     if (btnIsDisabled === true && isDisabled() === false) {

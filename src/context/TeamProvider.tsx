@@ -27,7 +27,7 @@ export const TeamProvider = ({ children }: props) => {
 
   const addMember = (newMember: Member) => {
     setTeamState((prevTeam) => {
-      if (prevTeam.teamCount < 5) {
+      if (prevTeam.teamCount < 4) {
         return {
           ...prevTeam,
           members: [...prevTeam.members, newMember],
