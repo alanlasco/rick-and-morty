@@ -26,29 +26,36 @@ export const Character = ({
 }: characterProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { teamState, addMember, disableBtn, isDisabled, disableAll } =
+  const { teamState, addMember, disableBtn, isDisabled, checkMember } =
     useContext(TeamContext);
-  const newMember: Member = {
-    idem: id,
-    img: image,
+  const newMember: characterProps = {
+    id: id,
     name: name,
+    status: status,
+    species: species,
+    image: image,
+    type: type,
+    gender: gender,
   };
-  const [btnIsDisabled, setBtnIsDisabled] = useState<boolean>(isDisabled());
+
   const handleClick = () => {
     addMember(newMember);
-    setBtnIsDisabled(true);
+
     disableBtn();
   };
+  // const handleDisabled = () => {
+  //   if (teamState.teamCount === 4) {
+  //     return isDisabled();
+  //   }
+  //   if (btnIsDisabled === true && isDisabled() === false) {
+  //     setBtnIsDisabled(false);
+  //     return isDisabled();
+  //   } else {
+  //     return btnIsDisabled;
+  //   }
+  // };
   const handleDisabled = () => {
-    if (teamState.teamCount === 4) {
-      return isDisabled();
-    }
-    if (btnIsDisabled === true && isDisabled() === false) {
-      setBtnIsDisabled(false);
-      return isDisabled();
-    } else {
-      return btnIsDisabled;
-    }
+    return teamState.teamCount === 4 || checkMember(newMember.id);
   };
 
   return (

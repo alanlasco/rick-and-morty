@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Member } from "../interfaces/inMember";
 import { teamState } from "../interfaces/inTeam";
 import { TeamContext } from "./TeamContext";
+import { character } from "../interfaces/inCharacter";
 
 interface props {
   children: JSX.Element | JSX.Element[];
@@ -16,9 +17,13 @@ export const TeamProvider = ({ children }: props) => {
     isFull: false,
   };
   const INITIAL_MEMBER: Member = {
-    idem: 0,
-    img: "",
+    id: 0,
     name: "",
+    status: "",
+    species: "",
+    image: "",
+    type: "",
+    gender: "",
   };
 
   const [teamState, setTeamState] = useState<teamState>(INITIAL_STATE);
@@ -39,6 +44,15 @@ export const TeamProvider = ({ children }: props) => {
         return prevTeam; // Retorna el estado sin cambios
       }
     });
+  };
+  const checkMember = (id: number) => {
+    const memberWithId = teamState.members.find((member) => member.id === id);
+
+    if (memberWithId) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   const reset = () => {
@@ -66,6 +80,7 @@ export const TeamProvider = ({ children }: props) => {
         isDisabled,
         disableBtn,
         disableAll,
+        checkMember,
       }}
     >
       {/* Renderizar otros componentes si es necesario */}
