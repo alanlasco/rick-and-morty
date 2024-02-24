@@ -4,7 +4,6 @@ import { FaUserAstronaut } from "react-icons/fa";
 import { ModalMoreDetails } from "./ModalMoreDetails";
 import { useContext, useState } from "react";
 import { TeamContext } from "../context/TeamContext";
-import { Member } from "../interfaces/inMember";
 export interface characterProps {
   id: number;
   name: string;
@@ -26,7 +25,7 @@ export const Character = ({
 }: characterProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { teamState, addMember, disableBtn, isDisabled, checkMember } =
+  const { teamState, addMember, disableBtn, checkMember } =
     useContext(TeamContext);
   const newMember: characterProps = {
     id: id,
@@ -43,17 +42,7 @@ export const Character = ({
 
     disableBtn();
   };
-  // const handleDisabled = () => {
-  //   if (teamState.teamCount === 4) {
-  //     return isDisabled();
-  //   }
-  //   if (btnIsDisabled === true && isDisabled() === false) {
-  //     setBtnIsDisabled(false);
-  //     return isDisabled();
-  //   } else {
-  //     return btnIsDisabled;
-  //   }
-  // };
+
   const handleDisabled = () => {
     return teamState.teamCount === 4 || checkMember(newMember.id);
   };

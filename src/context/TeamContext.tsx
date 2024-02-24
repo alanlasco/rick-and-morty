@@ -8,7 +8,6 @@ export type TeamContextProps = {
   reset: () => void;
   isDisabled: () => boolean;
   disableBtn: () => void;
-  disableAll: () => void;
   checkMember: (id: number) => boolean;
 };
 export const TeamContext = createContext<TeamContextProps>(

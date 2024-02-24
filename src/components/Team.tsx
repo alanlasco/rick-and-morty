@@ -1,15 +1,10 @@
-import React, { useState, useContext } from "react";
+import { useContext } from "react";
 import { TeamContext } from "../context/TeamContext";
-import { MdDriveFileRenameOutline } from "react-icons/md";
 import { SmallCard } from "./SmallCard";
 
 export const Team = () => {
-  const [isTeamMenuOpen, setIsTeamMenuOpen] = useState<boolean>(false);
   const { teamState, reset } = useContext(TeamContext);
 
-  const toggleTeanMenu = () => {
-    setIsTeamMenuOpen(!isTeamMenuOpen);
-  };
   const handleDisabled = () => {
     return teamState.teamCount === 0 ? true : false;
   };
@@ -21,7 +16,15 @@ export const Team = () => {
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-2">
             {members.map((member) => (
               <li key={member.id} className="mx-2 my-2">
-                <SmallCard img={member.image} name={member.name} />
+                <SmallCard
+                  id={member.id}
+                  image={member.image}
+                  name={member.name}
+                  status={member.status}
+                  species={member.species}
+                  type={member.type}
+                  gender={member.gender}
+                />
               </li>
             ))}
           </ul>

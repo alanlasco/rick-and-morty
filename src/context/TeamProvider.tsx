@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Member } from "../interfaces/inMember";
 import { teamState } from "../interfaces/inTeam";
 import { TeamContext } from "./TeamContext";
-import { character } from "../interfaces/inCharacter";
 
 interface props {
   children: JSX.Element | JSX.Element[];
 }
-interface btn {
-  isDisable: boolean;
-}
+
 export const TeamProvider = ({ children }: props) => {
   const INITIAL_STATE: teamState = {
     teamCount: 0,
     members: [],
-    isFull: false,
   };
   const INITIAL_MEMBER: Member = {
     id: 0,
@@ -40,8 +36,8 @@ export const TeamProvider = ({ children }: props) => {
           isFull: prevTeam.teamCount + 1 === 5,
         };
       } else {
-        setBtn(true); // Deshabilita el botón cuando el equipo está lleno
-        return prevTeam; // Retorna el estado sin cambios
+        setBtn(true);
+        return prevTeam;
       }
     });
   };
@@ -68,9 +64,6 @@ export const TeamProvider = ({ children }: props) => {
   const disableBtn = () => {
     setBtn(true);
   };
-  const disableAll = () => {
-    setBtn(false);
-  };
   return (
     <TeamContext.Provider
       value={{
@@ -79,7 +72,6 @@ export const TeamProvider = ({ children }: props) => {
         reset,
         isDisabled,
         disableBtn,
-        disableAll,
         checkMember,
       }}
     >
