@@ -4,15 +4,7 @@ import { FaUserAstronaut } from "react-icons/fa";
 import { ModalMoreDetails } from "./ModalMoreDetails";
 import { useContext, useState } from "react";
 import { TeamContext } from "../context/TeamContext";
-export interface characterProps {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  image: string;
-  type: string;
-  gender: string;
-}
+import { characterProps } from "../interfaces/inCharacterProps";
 
 export const Character = ({
   id,

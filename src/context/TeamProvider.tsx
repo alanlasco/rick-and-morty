@@ -52,11 +52,9 @@ export const TeamProvider = ({ children }: props) => {
   };
 
   const reset = () => {
-    console.log(teamState.members);
     setTeamState(INITIAL_STATE);
     setMember(INITIAL_MEMBER);
     setBtn(false);
-    console.log(teamState.members);
   };
   const isDisabled = () => {
     return btn;
