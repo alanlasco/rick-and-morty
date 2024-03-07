@@ -5,6 +5,8 @@ import { Navbar } from "../components/Navbar";
 import { ListOfCharacters } from "../components/ListOfCharacters";
 import { character } from "../interfaces/inCharacter";
 import { BtnReload } from "../components/BtnReload";
+import { TeamContext } from "../context/TeamContext";
+import { TeamProvider } from "../context/TeamProvider";
 
 export const Browser = () => {
   const [apiurl, setApiUrl] = useState<string>(
@@ -57,7 +59,7 @@ export const Browser = () => {
     setNeedReload(false);
   };
   return (
-    <>
+    <TeamProvider>
       <Navbar onSearch={handleSearch} />
       <div className=" bg-zinc-900 w-full grid place-items-center min-h-screen pt-4">
         {loading ? (
@@ -102,6 +104,6 @@ export const Browser = () => {
           </div>
         )}
       </div>
-    </>
+    </TeamProvider>
   );
 };

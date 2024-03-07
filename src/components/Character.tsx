@@ -2,17 +2,12 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { GrStatusInfo } from "react-icons/gr";
 import { FaUserAstronaut } from "react-icons/fa";
 import { ModalMoreDetails } from "./ModalMoreDetails";
-import { useState } from "react";
-export interface characterProps {
-  name: string;
-  status: string;
-  species: string;
-  image: string;
-  type: string;
-  gender: string;
-}
+import { useContext, useState } from "react";
+import { TeamContext } from "../context/TeamContext";
+import { characterProps } from "../interfaces/inCharacterProps";
 
 export const Character = ({
+  id,
   name,
   status,
   species,
@@ -21,6 +16,29 @@ export const Character = ({
   gender,
 }: characterProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { teamState, addMember, disableBtn, checkMember } =
+    useContext(TeamContext);
+  const newMember: characterProps = {
+    id: id,
+    name: name,
+    status: status,
+    species: species,
+    image: image,
+    type: type,
+    gender: gender,
+  };
+
+  const handleClick = () => {
+    addMember(newMember);
+
+    disableBtn();
+  };
+
+  const handleDisabled = () => {
+    return teamState.teamCount === 4 || checkMember(newMember.id);
+  };
+
   return (
     <div className="relative flex w-75 flex-col rounded-xl bg-gray-600 bg-clip-border text-gray-700 shadow-md">
       <div className="relative mx-4 -mt-6 h-41 overflow-hidden rounded-xl bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-green-500 to-green-600">
@@ -58,6 +76,17 @@ export const Character = ({
           className="select-none rounded-lg bg-green-400 hover:bg-green-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gren-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         >
           More details
+        </button>
+      </div>
+      <div className="mt-3 p-6 pt-0">
+        <button
+          onClick={() => handleClick()}
+          data-ripple-light="true"
+          type="button"
+          className="select-none rounded-lg bg-green-400 hover:bg-green-700 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gren-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          disabled={handleDisabled()}
+        >
+          Add{" "}
         </button>
       </div>
       {isOpen && (
