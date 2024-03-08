@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0a6edac5.css",
+    "main.js": "/static/js/main.a2a4238e.js",
+    "static/js/787.8dbf608d.chunk.js": "/static/js/787.8dbf608d.chunk.js",
+    "static/media/notFoundIcon.png": "/static/media/notFoundIcon.340df65513698991894c.png",
+    "static/media/rickandmorty.png": "/static/media/rickandmorty.7e5b4541a856601079c2.png",
+    "index.html": "/index.html",
+    "main.0a6edac5.css.map": "/static/css/main.0a6edac5.css.map",
+    "main.a2a4238e.js.map": "/static/js/main.a2a4238e.js.map",
+    "787.8dbf608d.chunk.js.map": "/static/js/787.8dbf608d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a6edac5.css",
+    "static/js/main.a2a4238e.js"
+  ]
+}
