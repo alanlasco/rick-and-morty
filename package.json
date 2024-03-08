@@ -2,7 +2,7 @@
   "homepage": "https://alanlasco.github.io/rick-and-morty",
   "name": "rick-and-morty",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -11,7 +11,6 @@
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
     "axios": "^1.6.2",
-    "gh-pages": "^6.1.1",
     "prettier": "^3.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -52,6 +51,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "eslint": "^8.55.0",
+    "gh-pages": "^6.1.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "ts-jest": "^29.1.1"

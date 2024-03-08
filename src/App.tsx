@@ -7,7 +7,7 @@ function App() {
   return (
     <TeamProvider>
       <div className="App">
-        <Router>
+        <Router basename="/rick-and-morty">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/browser" element={<Browser />} />
